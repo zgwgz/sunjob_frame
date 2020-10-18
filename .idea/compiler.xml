@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="spring01" />
+        <module name="spring03" />
+        <module name="springmvc01" />
+        <module name="fuxi1" />
+        <module name="ssm" />
+        <module name="mybatis02" />
+        <module name="spring06" />
+        <module name="mybatis05" />
+        <module name="mybatis04" />
+        <module name="mybatis03" />
+        <module name="ssm2" />
+        <module name="mybatis01" />
+        <module name="spring02" />
+        <module name="dataStruct" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="dataStruct" target="1.5" />
+      <module name="fuxi1" target="1.5" />
+      <module name="mybatis01" target="1.7" />
+      <module name="mybatis02" target="1.7" />
+      <module name="mybatis03" target="1.7" />
+      <module name="mybatis04" target="1.7" />
+      <module name="mybatis05" target="1.7" />
+      <module name="spring01" target="1.7" />
+      <module name="spring02" target="1.7" />
+      <module name="spring03" target="1.7" />
+      <module name="spring06" target="1.7" />
+      <module name="springmvc01" target="1.5" />
+      <module name="ssm" target="1.7" />
+      <module name="ssm2" target="1.7" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

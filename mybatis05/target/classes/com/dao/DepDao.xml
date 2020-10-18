@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.DepDao">
+    <resultMap id="dep" type="dep">
+        <id property="depid" column="depid"></id>
+        <result property="depname" column="depname"></result>
+        <!--延迟加载的一对多-->
+       <!-- <collection property="emps" column="depid" select="com.dao.EmpDao.findByDid" fetchType="lazy"  ofType="emp"></collection>-->
+
+        <!--直接查询-->
+        <collection property="emps"  ofType="emp">
+            <id column="empid" property="empid"></id>
+            <result column="empname" property="empname"></result>
+            <result column="gender" property="gender"></result>
+        </collection>
+    </resultMap>
+    <select id="findById" resultMap="dep" parameterType="int">
+        select  depid,depname from dep where depid=#{depid};
+    </select>
+
+    <select id="findById2" resultMap="dep" parameterType="Integer">
+        select  d.depid,d.depname,e.empid,e.empname,e.gender from dep d,emp e where d.depid=#{depid} and e.depid=d.depid;
+    </select>
+
+    <select id="fy" resultType="com.domain.Dep" >
+        select  depid,depname from dep
+    </select>
+
+</mapper>

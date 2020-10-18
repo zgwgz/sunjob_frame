@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <properties resource="jdbcConfig.properties"></properties>
+    <settings>
+        <setting name="" value=""/>
+    </settings>
+    <typeAliases>
+        <typeAlias type="com.domain.Dep" alias="Dep"></typeAlias>
+        <typeAlias type="com.domain.Emp" alias="emp"></typeAlias>
+    </typeAliases>
+
+    <environments default="mysql">
+        <environment id="mysql">
+            <transactionManager type="JDBC"></transactionManager>
+            <dataSource type="POOLED">
+                <property name="driver" value="${jdbc.driver}"></property>
+                <property name="url" value="${jdbc.url}"></property>
+                <property name="username" value="${jdbc.username}"></property>
+                <property name="password" value="${jdbc.password}"></property>
+            </dataSource>
+        </environment>
+    </environments>
+    <mappers>
+        <mapper resource="com/dao/DepDao.xml"></mapper>
+        <mapper resource="com/dao/EmpDao.xml"></mapper>
+    </mappers>
+</configuration>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <bean id="student" class="com.domain.Student">
+        <property name="name" value="zz"></property>
+        <property name="gender" value="难"></property>
+        <property name="source" ref="source"></property>
+        <property name="ah">
+            <array>
+                <value>打篮球</value>
+            </array>
+        </property>
+    </bean>
+
+    <bean id="source" class="com.domain.Source">
+        <property name="zf" value="100"> </property>
+        <property name="mc" value="2"></property>
+    </bean>
+
+
+    <!--创建切入点的对象-->
+    <bean id="mysa" class="com.tranction.MySaction"></bean>
+
+    <bean id="service" class="com.service.Service"></bean>
+    <aop:config>
+        <aop:aspect ref="mysa">
+            <aop:before pointcut="execution(* com.service.*.*(..))" method="begin"></aop:before>
+            <aop:after pointcut="execution(* com.service.*.*(..))" method="commit"></aop:after>
+        </aop:aspect>
+    </aop:config>
+</beans>
+
+

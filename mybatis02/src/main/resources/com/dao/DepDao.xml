@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.DepDao">
+    <!--配置对应关系-->
+    <resultMap id="depMap" type="com.domain.Dep">
+        <!--主键的对应关系-->
+        <id property="depid" column="depid"></id>
+        <!--非主键的关系-->
+        <result property="depname" column="depname"></result>
+    </resultMap>
+    <select id="findAll" resultMap="depMap">
+        select *from dep
+    </select>
+
+
+    <!--分页查询-->
+    <select id="findByFenYe" parameterType="map" resultMap="depMap">
+        select *from dep limit #{offset},#{size }
+    </select>
+
+    <!--插入并且返回自增主键-->
+    <insert id="addOne" parameterType="dep">
+       <!-- <selectKey keyProperty="depid"  order="AFTER" resultType="int">
+            select LAST_INSERT_ID()
+        </selectKey>-->
+
+       <selectKey keyProperty="depid" resultType="int" order="AFTER">
+           select LAST_INSERT_ID();
+       </selectKey>
+
+        insert into dep(depname)values(#{depname})
+    </insert>
+
+
+</mapper>

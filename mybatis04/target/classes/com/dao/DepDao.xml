@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.DepDao">
+    <resultMap id="depMap" type="com.domain.Dep">
+        <id property="depid" column="depid"></id>
+        <result property="depname" column="depname"></result>
+    </resultMap>
+
+
+    <!--新增一条数据并且返回一条数据-->
+    <insert id="addOne" parameterType="dep">
+        <selectKey keyProperty="depid" resultType="int" order="AFTER">
+            select LAST_INSERT_ID();
+        </selectKey>
+        insert into dep(depname)values(#{depname})
+    </insert>
+
+    <!--返回全部-->
+    <select id="findAll" resultMap="depMap">
+        select *from dep
+    </select>
+
+
+    <!--批量添加-->
+    <insert id="addBatch" parameterType="List" >
+    insert into dep(depname) values
+        <foreach collection="list" separator="," item="dep">
+            (#{dep.depname})
+        </foreach>
+    </insert>
+
+    <!--in查询-->
+    <select id="findByIds" resultMap="depMap" parameterType="List" >
+        select *from dep
+        <where>
+        <if test="deps!=null and deps.size()>0">
+           <foreach collection="list" item="depid" separator="," open="depid in(" close=")">
+             #{depid}
+           </foreach>
+        </if>
+        </where>
+    </select>
+
+
+    <select id="findCount"  statementType="CALLABLE" resultType="int">
+        {call findd(#{namee,mode=IN,javaType=String})}
+    </select>
+
+</mapper>
